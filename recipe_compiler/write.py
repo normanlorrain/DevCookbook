@@ -1,5 +1,6 @@
 import os
 
+OUTPUT="site"
 
 def write_home_page(home_page: str):
     """Writes the home_page HTML to file
@@ -8,7 +9,7 @@ def write_home_page(home_page: str):
         home_page (str): A string of HTML to be written to file
     """
 
-    with open("./docs/index.html", "w+") as f:
+    with open(f"./{OUTPUT}/index.html", "w+") as f:
         f.write(home_page)
 
 
@@ -22,8 +23,8 @@ def write_page(slug: str, page: str):
 
     assert slug != "index"
 
-    if not os.path.exists(f"./docs/{slug}"):
-        os.makedirs(f"./docs/{slug}")
+    if not os.path.exists(f"./{OUTPUT}/{slug}"):
+        os.makedirs(f"./{OUTPUT}/{slug}")
 
-    with open(f"./docs/{slug}/index.html", "w+") as f:
+    with open(f"./{OUTPUT}/{slug}/index.html", "w+") as f:
         f.write(page)

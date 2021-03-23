@@ -6,11 +6,12 @@ from recipe_compiler.render import (
     render_recipe_page,
     render_contribute_page,
 )
-from recipe_compiler.write import write_home_page, write_page
+from recipe_compiler.write import write_home_page, write_page, OUTPUT
 
 import argparse
 import glob
 import os
+import shutil
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -45,6 +46,12 @@ if __name__ == "__main__":
         [recipe.slug for recipe in recipes],
         [render_recipe_page(recipe, env) for recipe in recipes],
     )
+
+    if not os.path.exists(OUTPUT):
+        os.makedirs(OUTPUT)   
+
+    shutil.copyfile("docs/style.css", f"{OUTPUT}/style.css" )
+    shutil.copytree("docs/illustrations", f"{OUTPUT}/illustrations" )
 
     # Write
     write_home_page(home_page)

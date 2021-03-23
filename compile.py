@@ -51,7 +51,7 @@ if __name__ == "__main__":
         os.makedirs(OUTPUT)   
 
     shutil.copyfile("docs/style.css", f"{OUTPUT}/style.css" )
-    shutil.copytree("docs/illustrations", f"{OUTPUT}/illustrations" )
+    shutil.copytree("docs/illustrations", f"{OUTPUT}/illustrations", dirs_exist_ok=True)
 
     # Write
     write_home_page(home_page)
